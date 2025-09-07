@@ -4,37 +4,49 @@ public class Mail {
     private String sender;
     private String subject;
     private String content;
-    private String tag;
-    private boolean spam;
+    private ArrayList<String> tag = new ArrayList<>();
+    private boolean isspam;
 
-    public Mail(){
-        Scanner sc = new Scanner(System.in);
+    //contructor
+    public Mail(String sender, String receiver,String subject,String content){
+       this.sender=sender;
+       this.receiver = receiver;
+       this.subject=subject;
+       this.content=content;
 
-        System.out.println("Enter the Sender's Email: ");
-        this.sender = sc.next().toLowerCase();
-
-        System.out.println("Enter the Receiver's Email: ");
-        this.receiver = sc.next().toLowerCase();
-
-        System.out.println("Enter the Subject of the Email: ");
-        this.subject = sc.next();
-
-        System.out.println("Enter the Content of the Email: ");
-        this.content = sc.next();
-
-        this.tag= "No tag";
-        this.spam = false;
-
-    }
-    public void setTag(String tag) {
-        if(this.tag.startsWith("No")){
-            this.tag = tag+" |";
-        }
-        else {
-            this.tag += " " + tag+" |";
-        }
+        this.tag.add("No tag");
     }
 
+    //getters
+    public String getSender(){ return  this.sender;}
+    public String getReceiver(){ return  this.receiver;}
+    public String getSubject(){ return  this.subject;}
+    public String getContent(){ return  this.content;}
+    public List<String> getTag(){ return  this.tag;}
+    public boolean getspam(){ return  this.isspam;}
+
+    //setters
+
+    public void setspam( boolean val){ this.isspam = val;}
+    public void setTag(String tags) {
+        if(Objects.equals(tag.getLast(), "No tag")){
+            tag.removeLast();
+        }
+        if(!tag.contains(tags))
+            this.tag.add(tags);
+    }
+
+    //mutators
+    public void removeTag(String tags){
+        tag.remove(tags);
+    }
+
+    //methods
+    @Override
+    public String toString(){
+        return "Sender's emailID: "+sender+"\nReceiver's emailID: "+receiver+"\nSubject: "+subject
+                +"\nContent: "+content+"\nTags: "+tag+"\nSpam: "+isspam+"\n";
+    }
 
     public void displayDetails() {
         System.out.println("-------------------------------------------------------------");
@@ -43,7 +55,7 @@ public class Mail {
         System.out.println("Subject:"+subject);
         System.out.println("Content: "+content);
         System.out.println("Tag: "+tag);
-        System.out.println("Spam: "+ (spam ?"yes":"No"));
+        System.out.println("Spam: "+ (isspam?"yes":"No"));
         System.out.println("-------------------------------------------------------------");
     }
 }
