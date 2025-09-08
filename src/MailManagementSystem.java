@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MailManagementSystem {
-    private  List<Mail> mailBox;
+    private final List<Mail> mailBox;
     private final Set<String> spamWords;
     private final Scanner sc;
 

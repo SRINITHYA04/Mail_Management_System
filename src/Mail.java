@@ -7,7 +7,7 @@ public class Mail {
     private ArrayList<String> tag = new ArrayList<>();
     private boolean isspam;
 
-    //contructor
+    //constructor
     public Mail(String sender, String receiver,String subject,String content){
        this.sender=sender;
        this.receiver = receiver;
@@ -23,11 +23,10 @@ public class Mail {
     public String getSubject(){ return  this.subject;}
     public String getContent(){ return  this.content;}
     public List<String> getTag(){ return  this.tag;}
-    public boolean getspam(){ return  this.isspam;}
 
     //setters
 
-    public void setspam( boolean val){ this.isspam = val;}
+
     public void setTag(String tags) {
         if(Objects.equals(tag.getLast(), "No tag")){
             tag.removeLast();
